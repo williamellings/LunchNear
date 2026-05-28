@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LunchNear.Tests/LunchNear.Tests.csproj" />
+  <Project Path="LunchNear/LunchNear.csproj" />
+</Solution>

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wille\\Documents\\LunchNear\\LunchNear\\LunchNear.csproj": {}
+    "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear\\LunchNear.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wille\\Documents\\LunchNear\\LunchNear\\LunchNear.csproj": {
+    "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear\\LunchNear.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wille\\Documents\\LunchNear\\LunchNear\\LunchNear.csproj",
+        "projectUniqueName": "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear\\LunchNear.csproj",
         "projectName": "LunchNear",
-        "projectPath": "C:\\Users\\wille\\Documents\\LunchNear\\LunchNear\\LunchNear.csproj",
-        "packagesPath": "C:\\Users\\wille\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wille\\Documents\\LunchNear\\LunchNear\\obj\\",
+        "projectPath": "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear\\LunchNear.csproj",
+        "packagesPath": "C:\\Users\\invad\\.nuget\\packages\\",
+        "outputPath": "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\wille\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\invad\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,11 +26,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
-            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -45,17 +45,16 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.AspNetCore.App.Internal.Assets": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.5, )",
+              "version": "[10.0.3, )",
               "autoReferenced": true
             },
             "Microsoft.AspNetCore.Components.WebAssembly": {
@@ -67,16 +66,21 @@
               "target": "Package",
               "version": "[10.0.5, )"
             },
+            "Microsoft.DotNet.HotReload.WebAssembly.Browser": {
+              "target": "Package",
+              "version": "[10.0.103, )",
+              "autoReferenced": true
+            },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.5, )",
+              "version": "[10.0.3, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.6, )",
+              "version": "[10.0.3, )",
               "autoReferenced": true
             }
           },
@@ -93,12 +97,8 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[10.0.6, 10.0.6]"
-            },
-            {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[10.0.6, 10.0.6]"
+              "version": "[10.0.3, 10.0.3]"
             }
           ],
           "frameworkReferences": {
@@ -106,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300-preview.0.26177.108/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
