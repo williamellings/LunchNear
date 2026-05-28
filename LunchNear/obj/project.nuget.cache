@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "LIBmbMlrwVM=",
-  "success": false,
+  "dgSpecHash": "N/YxpV42MA8=",
+  "success": true,
   "projectFilePath": "C:\\Users\\wille\\Documents\\LunchNear\\LunchNear\\LunchNear.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wille\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.5\\microsoft.aspnetcore.app.internal.assets.10.0.5.nupkg.sha512",
@@ -38,18 +38,5 @@
     "C:\\Users\\wille\\.nuget\\packages\\microsoft.netcore.app.ref\\10.0.6\\microsoft.netcore.app.ref.10.0.6.nupkg.sha512",
     "C:\\Users\\wille\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\10.0.6\\microsoft.netcore.app.runtime.mono.browser-wasm.10.0.6.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Microsoft.AspNetCore.Components.WebAssembly.PWA. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
-      "projectPath": "C:\\Users\\wille\\Documents\\LunchNear\\LunchNear\\LunchNear.csproj",
-      "filePath": "C:\\Users\\wille\\Documents\\LunchNear\\LunchNear\\LunchNear.csproj",
-      "libraryId": "Microsoft.AspNetCore.Components.WebAssembly.PWA",
-      "targetGraphs": [
-        "net10.0",
-        "net10.0/browser-wasm"
-      ]
-    }
-  ]
+  "logs": []
 }
