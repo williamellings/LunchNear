@@ -5,7 +5,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   "mainAssemblyName": "LunchNear",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-WGyF5k9e5k3Ts3lG00Y5ye++Iip637f+qWG2VLNFGCo=",
+    "hash": "sha256-z15vslqhQGGYVsNqqofJ7GIXgct/JgcZJp7hk6nfkg0=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.3qf6w265iu.js"
@@ -1242,16 +1242,16 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "LunchNear.wasm",
-        "name": "LunchNear.g7u2rjryoh.wasm",
-        "integrity": "sha256-bFy3afIw4tMWw0GVudiGE/X6S69WD8mhxtYrtiDHwKw=",
+        "name": "LunchNear.7eoug4pa9s.wasm",
+        "integrity": "sha256-/4bK0lXxebxikfiUQOhNPl6Wrs7yMoBHkeo/8pRZzW4=",
         "cache": "force-cache"
       }
     ],
     "pdb": [
       {
         "virtualPath": "LunchNear.pdb",
-        "name": "LunchNear.sg85uvijsu.pdb",
-        "integrity": "sha256-HFTQ3nzUiO8pIUwt/FH6YkaptTesEodArHBt/vlXP5g=",
+        "name": "LunchNear.bjabpqz60t.pdb",
+        "integrity": "sha256-6eT5Rggvi8zzFAhUhK8DdKO1DHlPdkUkicR3r1yEKdI=",
         "cache": "force-cache"
       }
     ],

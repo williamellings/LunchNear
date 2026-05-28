@@ -1,7 +1,112 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<div class="min-h-screen pb-24" style="background-color: var(--background);">
+  
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
+    <div class="max-w-md mx-auto px-4 pt-safe pt-4">
+      
+      <div class="relative">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" 
+               placeholder="Sök restauranger, kök eller rätter..."
+               @bind="searchQuery" 
+               @bind:event="oninput"
+               class="w-full pl-12 pr-12 h-14 rounded-2xl bg-white border border-gray-200 shadow-sm text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+        <button class="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-xl bg-orange-600 text-white hover:bg-orange-700 transition-colors">
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </button>
+      </div>
+      
+      <div class="flex gap-2 overflow-x-auto py-4 scrollbar-hide -mx-4 px-4 mt-2">
+        <button @onclick="ToggleStudentFilter" 
+                class="flex items-center gap-2 px-4 py-2.5 rounded-full whitespace-nowrap text-sm font-medium transition-all shrink-0 @(studentFilterActive ? "bg-orange-600 text-white shadow-md" : "bg-white text-gray-800 border border-gray-200")">
+          🎓 Studentrabatt
+        </button>
+        <button class="flex items-center gap-2 px-4 py-2.5 rounded-full whitespace-nowrap text-sm font-medium transition-all shrink-0 bg-white text-gray-800 border border-gray-200">
+          🔥 Populärt
+        </button>
+        <button class="flex items-center gap-2 px-4 py-2.5 rounded-full whitespace-nowrap text-sm font-medium transition-all shrink-0 bg-white text-gray-800 border border-gray-200">
+          📍 Nära dig
+        </button>
+      </div>
+    </div>
+  </header>
 
-<h1>Hello, world!</h1>
+  <main class="max-w-md mx-auto px-4 py-6">
+    <div class="grid gap-4">
+      @foreach (var restaurant in FilteredRestaurants)
+      {
+        <div class="overflow-hidden border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 bg-white rounded-3xl">
+          
+          <div class="relative aspect-[4/3] overflow-hidden bg-gray-100">
+            <img src="@restaurant.ImageUrl" alt="@restaurant.Name" class="object-cover w-full h-full transition-transform duration-300 hover:scale-105" />
+            
+            @if (restaurant.HasStudentDiscount)
+            {
+              <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-orange-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-md">
+                🎓 @restaurant.DiscountPercent% rabatt
+              </div>
+            }
+            
+            <div class="absolute top-3 right-3 flex items-center gap-1 bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full shadow-md">
+              <span class="text-amber-400">⭐</span>
+              <span class="text-sm font-semibold text-gray-900">@restaurant.Rating</span>
+              <span class="text-xs text-gray-500">(@restaurant.ReviewCount)</span>
+            </div>
+          </div>
+          
+          <div class="p-4">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div>
+                <h3 class="font-semibold text-lg text-gray-900 leading-tight text-balance">@restaurant.Name</h3>
+                <p class="text-sm text-gray-500 mt-0.5">@restaurant.Cuisine</p>
+              </div>
+              <span class="text-sm font-medium text-gray-900 bg-gray-100 px-2 py-1 rounded-lg shrink-0">
+                @restaurant.PriceRange
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-4 text-sm text-gray-500 mt-3">
+              <div class="flex items-center gap-1.5">
+                📍 <span>@restaurant.Distance</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                🕒 <span>@restaurant.DeliveryTime</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </main>
+</div>
+@code {
+    private string searchQuery = "";
+    private bool studentFilterActive = false;
 
-Welcome to your new app.
+    private void ToggleStudentFilter()
+    {
+        studentFilterActive = !studentFilterActive;
+    }
+
+    private List<RestaurantItem> mockRestaurants = new()
+    {
+        new RestaurantItem("Vasastan Burgers", "Hamburgare • Amerikanskt", 4.8, 342, "1.2 km", "10 min", "115 kr", "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80", true, 15),
+        new RestaurantItem("Sushi Kungen", "Sushi • Japanskt", 4.5, 128, "450 m", "5 min", "130 kr", "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=500&q=80", true, 10),
+        new RestaurantItem("Avenyn Pasta", "Italienskt • Pasta", 4.2, 89, "2.1 km", "15 min", "145 kr", "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=500&q=80", false, 0)
+    };
+
+    private List<RestaurantItem> FilteredRestaurants => mockRestaurants
+        .Where(r => (string.IsNullOrWhiteSpace(searchQuery) || 
+                    r.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) || 
+                    r.Cuisine.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)) &&
+                   (!studentFilterActive || r.HasStudentDiscount))
+        .ToList();
+
+    public record RestaurantItem(string Name, string Cuisine, double Rating, int ReviewCount, string Distance, string DeliveryTime, string PriceRange, string ImageUrl, bool HasStudentDiscount, int DiscountPercent);
+}

@@ -207,9 +207,6 @@ C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framewor
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\icudt_EFIGS.tptq2av103.dat
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\icudt_no_CJK.lfu7j35m59.dat
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\Microsoft.DotNet.HotReload.WebAssembly.Browser.airm4uj448.wasm
-C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\LunchNear.g7u2rjryoh.wasm
-C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\LunchNear.sg85uvijsu.pdb
-C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\dotnet.av154un4tj.js
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\blazor.webassembly.66stpp682q.js.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\Microsoft.AspNetCore.Authorization.roqc1km2rj.wasm.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\Microsoft.AspNetCore.Components.uddsvpv1sv.wasm.gz
@@ -418,9 +415,6 @@ C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framewor
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\icudt_EFIGS.tptq2av103.dat.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\icudt_no_CJK.lfu7j35m59.dat.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\Microsoft.DotNet.HotReload.WebAssembly.Browser.airm4uj448.wasm.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\LunchNear.g7u2rjryoh.wasm.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\LunchNear.sg85uvijsu.pdb.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\dotnet.av154un4tj.js.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\LunchNear.staticwebassets.runtime.json
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\LunchNear.staticwebassets.endpoints.json
 C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\LunchNear.dll
@@ -855,7 +849,6 @@ C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\blazor.build.boot
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\dotnet.js
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\staticwebassets\htmlassetplaceholders\build\lfcoy45rv4.html
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\afz1u4qieg-{0}-99zm1jdh75-99zm1jdh75.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\1o3l67jy2x-{0}-nk9bgqz024-nk9bgqz024.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\29zsjhj18r-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\h9mvivz4eh-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\28jfj07qnp-{0}-erw9l3u2r3-erw9l3u2r3.gz
@@ -903,8 +896,6 @@ C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\hqe6ul
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\1ee27okls8-{0}-hr8lz6ohg5-hr8lz6ohg5.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\p8lyyufd4u-{0}-iag0ou56lh-iag0ou56lh.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\bfxgw4jgwp-{0}-66stpp682q-66stpp682q.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\d7jgfem5es-{0}-lg2xshnkr5-lg2xshnkr5.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\iuqlrn01k1-{0}-lg2xshnkr5-lg2xshnkr5.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\rjkehobf84-{0}-roqc1km2rj-roqc1km2rj.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\ctrgjuc8k0-{0}-uddsvpv1sv-uddsvpv1sv.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\yqsy6vdk61-{0}-zrueb40r85-zrueb40r85.gz
@@ -1112,10 +1103,6 @@ C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\txpp5h
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\ppk62ky0dl-{0}-tptq2av103-tptq2av103.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\tv0yc3mc5u-{0}-lfu7j35m59-lfu7j35m59.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\9s0rdbz2jb-{0}-airm4uj448-airm4uj448.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\x2b11h8t9t-{0}-g7u2rjryoh-g7u2rjryoh.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\yr69y9pk05-{0}-sg85uvijsu-sg85uvijsu.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\7nvey5uktj-{0}-av154un4tj-av154un4tj.gz
-C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\c1mudm8o8a-{0}-gjcdav85a5-gjcdav85a5.gz
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\staticwebassets.development.json
@@ -1126,3 +1113,17 @@ C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\LunchNear.dll
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\refint\LunchNear.dll
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\LunchNear.pdb
 C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\ref\LunchNear.dll
+C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\LunchNear.sourcelink.json
+C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\LunchNear.7eoug4pa9s.wasm
+C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\LunchNear.bjabpqz60t.pdb
+C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\dotnet.bkjo1bgjr5.js
+C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\LunchNear.7eoug4pa9s.wasm.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\LunchNear.bjabpqz60t.pdb.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\bin\Debug\net10.0\wwwroot\_framework\dotnet.bkjo1bgjr5.js.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\d7jgfem5es-{0}-1jowgbjwa2-1jowgbjwa2.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\iuqlrn01k1-{0}-1jowgbjwa2-1jowgbjwa2.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\x2b11h8t9t-{0}-7eoug4pa9s-7eoug4pa9s.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\yr69y9pk05-{0}-bjabpqz60t-bjabpqz60t.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\7nvey5uktj-{0}-bkjo1bgjr5-bkjo1bgjr5.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\1o3l67jy2x-{0}-lizynx2bjr-lizynx2bjr.gz
+C:\Users\wille\Documents\LunchNear\LunchNear\obj\Debug\net10.0\compressed\c1mudm8o8a-{0}-q84tpajqdl-q84tpajqdl.gz
