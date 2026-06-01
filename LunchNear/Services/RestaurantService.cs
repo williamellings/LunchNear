@@ -2,9 +2,9 @@ namespace LunchNear.Services;
 
 using LunchNear.Models;
 
-/// <summary>
+/// lol im coding at the night)
 /// Implementation of restaurant data service with mock data.
-/// </summary>
+/// this info for test in the future scraping will add real info.
 public class RestaurantService : IRestaurantService
 {
     private readonly List<Restaurant> _restaurants;
@@ -125,5 +125,35 @@ public class RestaurantService : IRestaurantService
                 HasStudentDiscount = false
             }
         };
+    }
+
+    public Task<IEnumerable<Restaurant>> FilterRestaurants(RestaurantFilterCriteria criteria)
+    {
+        var results = _restaurants.AsEnumerable();
+
+        if (criteria == null ||
+            (string.IsNullOrWhiteSpace(criteria.PriceRange) &&
+             !criteria.HasStudentDiscount.HasValue &&
+             !criteria.HasLunchBuffet.HasValue))
+        {
+            return Task.FromResult(results);
+        }
+
+        if (!string.IsNullOrWhiteSpace(criteria.PriceRange))
+        {
+            results = results.Where(r => r.PriceRange == criteria.PriceRange);
+        }
+
+        if (criteria.HasStudentDiscount.HasValue)
+        {
+            results = results.Where(r => r.HasStudentDiscount == criteria.HasStudentDiscount.Value);
+        }
+
+        if (criteria.HasLunchBuffet.HasValue)
+        {
+            results = results.Where(r => r.HasLunchBuffet == criteria.HasLunchBuffet.Value);
+        }
+
+        return Task.FromResult(results.ToList() as IEnumerable<Restaurant>);
     }
 }
