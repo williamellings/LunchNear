@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LunchNear.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64f7b6d8a3886a548dd9dc19afa8b174e7726f70")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4c4eb1274efa4b0d8c3f7cf7214361440278201")]
 [assembly: System.Reflection.AssemblyProductAttribute("LunchNear.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LunchNear.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

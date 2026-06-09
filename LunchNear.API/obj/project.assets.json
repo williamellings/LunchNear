@@ -36,6 +36,16 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "LunchNear.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/LunchNear.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LunchNear.Shared.dll": {}
+        }
       }
     }
   },
@@ -75,10 +85,16 @@
         "microsoft.openapi.2.0.0.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "LunchNear.Shared/1.0.0": {
+      "type": "project",
+      "path": "../LunchNear.Shared/LunchNear.Shared.csproj",
+      "msbuildProject": "../LunchNear.Shared/LunchNear.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "LunchNear.Shared >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 10.0.3"
     ]
   },
@@ -114,7 +130,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj": {
+              "projectPath": "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

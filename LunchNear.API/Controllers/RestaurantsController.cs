@@ -1,8 +1,8 @@
-namespace LunchNear.Controllers;
+namespace LunchNear.API.Controllers;
 
-using Microsoft.AspNetCore.Components;
-using LunchNear.Models;
-using LunchNear.Services;
+using Microsoft.AspNetCore.Mvc;
+using LunchNear.Shared.Models;
+using LunchNear.Shared.Services;
 
 [ApiController]
 [Route("api/[controller]")]
