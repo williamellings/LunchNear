@@ -1,0 +1,6 @@
+@LunchNear.API_HostAddress = http://localhost:5263
+
+GET {{LunchNear.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

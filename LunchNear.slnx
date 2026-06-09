@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="LunchNear.API/LunchNear.API.csproj" />
+  <Project Path="LunchNear.Shared/LunchNear.Shared.csproj" />
   <Project Path="LunchNear.Tests/LunchNear.Tests.csproj" />
   <Project Path="LunchNear/LunchNear.csproj" />
 </Solution>
