@@ -1,6 +1,6 @@
 namespace LunchNear.Tests;
 
-using LunchNear.Models;
+using LunchNear.Shared.Models;
 
 public class DishTests
 {

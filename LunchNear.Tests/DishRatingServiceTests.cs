@@ -1,17 +1,16 @@
 namespace LunchNear.Tests;
 
-using LunchNear.Models;
-using LunchNear.Services;
+using LunchNear.Shared.Models;
+using LunchNear.Shared.Services;
+using LunchNear.API.Services;
 
 public class DishRatingServiceTests
 {
     private readonly IDishRatingService _service;
-    private readonly IRestaurantService _restaurantService;
 
     public DishRatingServiceTests()
     {
-        _restaurantService = new RestaurantService();
-        _service = new DishRatingService(_restaurantService);
+        _service = new DishRatingService();
     }
 
     [Fact]

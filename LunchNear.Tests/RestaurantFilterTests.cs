@@ -1,7 +1,8 @@
 namespace LunchNear.Tests;
 
-using LunchNear.Models;
-using LunchNear.Services;
+using LunchNear.Shared.Models;
+using LunchNear.Shared.Services;
+using LunchNear.API.Services;
 
 public class RestaurantFilterTests
 {

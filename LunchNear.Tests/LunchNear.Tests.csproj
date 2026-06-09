@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LunchNear\LunchNear.csproj" />
+    <ProjectReference Include="..\LunchNear.Shared\LunchNear.Shared.csproj" />
+    <ProjectReference Include="..\LunchNear.API\LunchNear.API.csproj" />
   </ItemGroup>
 
 </Project>
