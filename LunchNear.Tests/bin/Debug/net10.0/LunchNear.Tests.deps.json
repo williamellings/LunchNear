@@ -9,6 +9,8 @@
       "LunchNear.Tests/1.0.0": {
         "dependencies": {
           "LunchNear": "1.0.0",
+          "LunchNear.API": "1.0.0",
+          "LunchNear.Shared": "1.0.0",
           "Microsoft.NET.Test.Sdk": "17.14.1",
           "xunit": "2.9.3"
         },
@@ -88,6 +90,17 @@
           "lib/net10.0/Microsoft.AspNetCore.Metadata.dll": {
             "assemblyVersion": "10.0.0.0",
             "fileVersion": "10.0.526.15411"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.OpenApi/10.0.3": {
+        "dependencies": {
+          "Microsoft.OpenApi": "2.0.0"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll": {
+            "assemblyVersion": "10.0.3.0",
+            "fileVersion": "10.0.326.7603"
           }
         }
       },
@@ -341,6 +354,14 @@
         "dependencies": {
           "Microsoft.CodeCoverage": "17.14.1",
           "Microsoft.TestPlatform.TestHost": "17.14.1"
+        }
+      },
+      "Microsoft.OpenApi/2.0.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.OpenApi.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
         }
       },
       "Microsoft.TestPlatform.ObjectModel/17.14.1": {
@@ -646,11 +667,32 @@
       },
       "LunchNear/1.0.0": {
         "dependencies": {
+          "LunchNear.Shared": "1.0.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "10.0.5",
           "Microsoft.DotNet.HotReload.WebAssembly.Browser": "10.0.103"
         },
         "runtime": {
           "LunchNear.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "LunchNear.API/1.0.0": {
+        "dependencies": {
+          "LunchNear.Shared": "1.0.0",
+          "Microsoft.AspNetCore.OpenApi": "10.0.3"
+        },
+        "runtime": {
+          "LunchNear.API.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "LunchNear.Shared/1.0.0": {
+        "runtime": {
+          "LunchNear.Shared.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -705,6 +747,13 @@
       "sha512": "sha512-nXVB1K4RzyhDHKYWLiq3+aJopJZKO5ojFqHV9PZ74fe4VWM/8itoouqsd2KIqSooIwQ13UDNlPQfN2rWr7hc2A==",
       "path": "microsoft.aspnetcore.metadata/10.0.5",
       "hashPath": "microsoft.aspnetcore.metadata.10.0.5.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.OpenApi/10.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SAvSrKDgnY5GDjDAngOXxPhUvEKlTU/0zIq8zidqHvh/xnZBPs0Vc4LqwyvnmnafNnyUaivtRABz4K4wodXfSg==",
+      "path": "microsoft.aspnetcore.openapi/10.0.3",
+      "hashPath": "microsoft.aspnetcore.openapi.10.0.3.nupkg.sha512"
     },
     "Microsoft.CodeCoverage/17.14.1": {
       "type": "package",
@@ -867,6 +916,13 @@
       "path": "microsoft.net.test.sdk/17.14.1",
       "hashPath": "microsoft.net.test.sdk.17.14.1.nupkg.sha512"
     },
+    "Microsoft.OpenApi/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw==",
+      "path": "microsoft.openapi/2.0.0",
+      "hashPath": "microsoft.openapi.2.0.0.nupkg.sha512"
+    },
     "Microsoft.TestPlatform.ObjectModel/17.14.1": {
       "type": "package",
       "serviceable": true,
@@ -931,6 +987,16 @@
       "hashPath": "xunit.extensibility.execution.2.9.3.nupkg.sha512"
     },
     "LunchNear/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LunchNear.API/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LunchNear.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

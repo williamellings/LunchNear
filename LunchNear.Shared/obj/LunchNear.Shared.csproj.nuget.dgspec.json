@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj": {}
+    "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj": {}
   },
   "projects": {
-    "c:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj": {
+    "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj",
+        "projectUniqueName": "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj",
         "projectName": "LunchNear.Shared",
-        "projectPath": "c:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj",
+        "projectPath": "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\LunchNear.Shared.csproj",
         "packagesPath": "C:\\Users\\invad\\.nuget\\packages\\",
-        "outputPath": "c:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\obj\\",
+        "outputPath": "C:\\MyLunchNearProjectFolder\\LunchNear\\LunchNear.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
