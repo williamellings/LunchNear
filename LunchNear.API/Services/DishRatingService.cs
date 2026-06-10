@@ -1,74 +1,59 @@
 namespace LunchNear.API.Services;
 
+using Microsoft.EntityFrameworkCore;
+using LunchNear.API.Data;
 using LunchNear.Shared.Models;
 using LunchNear.Shared.Services;
 
 public class DishRatingService : IDishRatingService
 {
-    private readonly List<DishRating> _ratings = new();
+    private readonly LunchNearDbContext _dbContext;
 
-    public Task SubmitDishRating(DishRating rating)
+    public DishRatingService(LunchNearDbContext dbContext)
     {
-        rating.Id = _ratings.Count > 0 ? _ratings.Max(r => r.Id) + 1 : 1;
+        _dbContext = dbContext;
+    }
+
+    public async Task SubmitDishRating(DishRating rating)
+    {
         rating.CreatedAt = DateTime.Now;
-        _ratings.Add(rating);
-        return Task.CompletedTask;
+        _dbContext.DishRatings.Add(rating);
+        await _dbContext.SaveChangesAsync();
     }
 
-    public Task<IEnumerable<DishRating>> GetDishRatings(int dishId)
+    public async Task<IEnumerable<DishRating>> GetDishRatings(int dishId)
     {
-        var dishRatings = _ratings.Where(r => r.DishId == dishId).ToList();
-        return Task.FromResult(dishRatings.AsEnumerable());
+        return await _dbContext.DishRatings
+            .Where(r => r.DishId == dishId)
+            .ToListAsync();
     }
 
-    public Task<decimal> CalculateAverageDishRating(int dishId)
+    public async Task<decimal> CalculateAverageDishRating(int dishId)
     {
-        var dishRatings = _ratings.Where(r => r.DishId == dishId).ToList();
+        var dishRatings = await _dbContext.DishRatings
+            .Where(r => r.DishId == dishId)
+            .ToListAsync();
 
         if (!dishRatings.Any())
         {
-            return Task.FromResult(0m);
+            return 0m;
         }
 
-        var average = (decimal)dishRatings.Average(r => r.Rating);
-        return Task.FromResult(average);
+        return (decimal)dishRatings.Average(r => r.Rating);
     }
 
     public async Task<IEnumerable<Dish>> GetTopRatedDishesByRestaurant(int restaurantId)
     {
-        var topDishes = new List<Dish>();
-        var mockDishes = GetMockDishesByRestaurant(restaurantId);
+        var dishes = await _dbContext.Dishes
+            .Where(d => d.RestaurantId == restaurantId)
+            .ToListAsync();
 
-        foreach (var dish in mockDishes)
+        foreach (var dish in dishes)
         {
             var avgRating = await CalculateAverageDishRating(dish.Id);
             dish.Rating = avgRating;
-            topDishes.Add(dish);
         }
 
-        return topDishes.OrderByDescending(d => d.Rating);
-    }
-
-    private List<Dish> GetMockDishesByRestaurant(int restaurantId)
-    {
-        return restaurantId switch
-        {
-            1 => new List<Dish>
-            {
-                new() { Id = 1, Name = "Whopper", RestaurantId = 1, Price = 8.99m, Description = "Classic flame-grilled burger" },
-                new() { Id = 2, Name = "Chicken Sandwich", RestaurantId = 1, Price = 7.99m, Description = "Crispy chicken sandwich" }
-            },
-            2 => new List<Dish>
-            {
-                new() { Id = 3, Name = "Margherita Pizza", RestaurantId = 2, Price = 12.99m, Description = "Classic Italian pizza" },
-                new() { Id = 4, Name = "Quattro Formaggi", RestaurantId = 2, Price = 14.99m, Description = "Four cheese pizza" }
-            },
-            3 => new List<Dish>
-            {
-                new() { Id = 5, Name = "Salmon Roll", RestaurantId = 3, Price = 15.99m, Description = "Fresh salmon sushi roll" },
-                new() { Id = 6, Name = "Dragon Roll", RestaurantId = 3, Price = 16.99m, Description = "Tempura shrimp and avocado" }
-            },
-            _ => new List<Dish>()
-        };
+        return dishes.OrderByDescending(d => d.Rating);
     }
 }

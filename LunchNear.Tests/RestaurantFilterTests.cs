@@ -3,10 +3,17 @@ namespace LunchNear.Tests;
 using LunchNear.Shared.Models;
 using LunchNear.Shared.Services;
 using LunchNear.API.Services;
+using LunchNear.Tests.Helpers;
 
 public class RestaurantFilterTests
 {
-    private readonly IRestaurantService _service = new RestaurantService();
+    private readonly IRestaurantService _service;
+
+    public RestaurantFilterTests()
+    {
+        var dbContext = TestDbContextFactory.CreateTestDbContext();
+        _service = new RestaurantService(dbContext);
+    }
 
     [Fact]
     public async Task FilterRestaurants_WithNullCriteria_ShouldReturnAllRestaurants()
