@@ -3,6 +3,7 @@ namespace LunchNear.Tests;
 using LunchNear.Shared.Models;
 using LunchNear.Shared.Services;
 using LunchNear.API.Services;
+using LunchNear.Tests.Helpers;
 
 public class DishRatingServiceTests
 {
@@ -10,7 +11,8 @@ public class DishRatingServiceTests
 
     public DishRatingServiceTests()
     {
-        _service = new DishRatingService();
+        var dbContext = TestDbContextFactory.CreateTestDbContext();
+        _service = new DishRatingService(dbContext);
     }
 
     [Fact]

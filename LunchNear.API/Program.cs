@@ -1,10 +1,17 @@
 using LunchNear.API.Services;
+using LunchNear.API.Data;
 using LunchNear.Shared.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? "Data Source=lunchnear.db";
+builder.Services.AddDbContext<LunchNearDbContext>(options =>
+    options.UseSqlite(connectionString));
 
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IDishRatingService, DishRatingService>();
