@@ -1,0 +1,30 @@
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+user.lock
+
+# Build & Output directories
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+
+# NuGet packages
+**/packages/*
+*.nupkg
+project.lock.json
+
+# Razor Pages / ASP.NET Core specific
+ipch/
+*.opensdf
+*.sdf
+*.cache
+*.suo
+.well-known/
+
+# OS generated files
+.DS_Store
+Thumbs.db
