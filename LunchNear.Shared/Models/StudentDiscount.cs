@@ -9,4 +9,7 @@ public class StudentDiscount
     public int RestaurantId { get; set; }
     public required string Description { get; set; }
     public int DiscountPercentage { get; set; }
+
+
+    public Restaurant? Restaurant { get; set; }
 }

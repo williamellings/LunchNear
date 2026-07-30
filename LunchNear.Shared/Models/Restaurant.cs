@@ -12,4 +12,8 @@ public class Restaurant
     public required string PriceRange { get; set; }
     public bool HasLunchBuffet { get; set; }
     public bool HasStudentDiscount { get; set; }
+
+
+    public ICollection<Dish> Dishes { get; set; } = new List<Dish>();
+    public ICollection<StudentDiscount> StudentDiscounts { get; set; } = new List<StudentDiscount>();
 }

@@ -11,19 +11,42 @@ public class LunchNearDbContext : DbContext
 {
     public LunchNearDbContext(DbContextOptions<LunchNearDbContext> options) : base(options) { }
 
-    public DbSet<Restaurant> Restaurants { get; set; }
-    public DbSet<Dish> Dishes { get; set; }
-    public DbSet<DishRating> DishRatings { get; set; }
-    public DbSet<StudentDiscount> StudentDiscounts { get; set; }
+    public required DbSet<Restaurant> Restaurants { get; set; } 
+    public required  DbSet<Dish> Dishes { get; set; }
+    public required DbSet<DishRating> DishRatings { get; set; }
+    public required DbSet<StudentDiscount> StudentDiscounts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<Restaurant>()
+        .HasMany(r => r.Dishes)
+        .WithOne(d => d.Restaurant)
+        .HasForeignKey(d => d.RestaurantId)
+        .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Restaurant>()
+            .HasMany(r => r.StudentDiscounts)
+            .WithOne(sd => sd.Restaurant)
+            .HasForeignKey(sd => sd.RestaurantId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Dish>()
+            .HasMany(d => d.Ratings)
+            .WithOne(r => r.Dish)
+            .HasForeignKey(r => r.DishId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+
+
+
         // Seed initial data
         SeedRestaurants(modelBuilder);
         SeedStudentDiscounts(modelBuilder);
         SeedDishes(modelBuilder);
+
+
     }
 
     private void SeedRestaurants(ModelBuilder modelBuilder)

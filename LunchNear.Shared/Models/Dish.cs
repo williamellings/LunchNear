@@ -17,4 +17,8 @@ public class Dish
     public decimal Rating { get; set; }
 
     public string? Description { get; set; }
+
+    public Restaurant? Restaurant { get; set; }
+    public ICollection<DishRating> Ratings { get; set; } = new List<DishRating>();
+
 }
