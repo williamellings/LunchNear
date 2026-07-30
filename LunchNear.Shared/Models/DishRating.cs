@@ -11,4 +11,7 @@ public class DishRating
     public int Rating { get; set; }
     public string? Review { get; set; }
     public DateTime CreatedAt { get; set; }
+
+    public Dish? Dish { get; set; }
+
 }
