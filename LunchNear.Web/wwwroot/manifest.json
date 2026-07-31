@@ -1,0 +1,15 @@
+{
+  "name": "LunchNear",
+  "short_name": "LunchNear",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FAFAFB",
+  "theme_color": "#FF6B4A",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

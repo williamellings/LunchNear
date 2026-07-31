@@ -1,0 +1,24 @@
+@for (var i = 1; i <= MaxStars; i++)
+{
+    var star = i;
+    <button type="button"
+            class="star-btn @(star <= Value ? "filled" : "")"
+            disabled="@ReadOnly"
+            @onclick="() => Select(star)">
+        ★
+    </button>
+}
+
+@code {
+    [Parameter] public int Value { get; set; }
+    [Parameter] public EventCallback<int> ValueChanged { get; set; }
+    [Parameter] public bool ReadOnly { get; set; }
+    [Parameter] public int MaxStars { get; set; } = 5;
+
+    private async Task Select(int star)
+    {
+        if (ReadOnly) return;
+        Value = star;
+        await ValueChanged.InvokeAsync(star);
+    }
+}

@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+
+<div class="app-shell">
+    <main class="app-main">
+        @Body
+    </main>
+
+    <nav class="bottom-nav">
+        <NavLink href="/" Match="NavLinkMatch.All" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </NavLink>
+        <NavLink href="/restaurants" class="nav-item">
+            <span class="nav-icon">🍽️</span>
+            <span>Restaurants</span>
+        </NavLink>
+    </nav>
+</div>

@@ -1,0 +1,176 @@
+@page "/restaurant/{RestaurantId:int}"
+@inject LunchNearApiClient Api
+@inject UserIdentityService UserIdentity
+
+<PageTitle>@(_restaurant?.Name ?? "Restaurant") — LunchNear</PageTitle>
+
+@if (loading)
+{
+    <div class="loading-state">Loading...</div>
+}
+else if (_restaurant == null)
+{
+    <div class="empty-state">Restaurant not found</div>
+}
+else
+{
+    <div class="detail-header">
+        <a href="/restaurants" class="back-link">← Back</a>
+        <h1>@_restaurant.Name</h1>
+        <p class="address">@_restaurant.Address</p>
+        <div class="detail-meta">
+            <span class="rating-badge">⭐ @(_liveRating > 0 ? _liveRating.ToString("0.0") : _restaurant.AverageRating.ToString("0.0"))</span>
+            <span class="badge price">@_restaurant.PriceRange</span>
+        </div>
+    </div>
+
+    <section class="detail-section">
+        <h2>Rate this restaurant</h2>
+        <StarRating @bind-Value="restaurantRating" />
+        <textarea @bind="restaurantReview" placeholder="Comment (optional)" class="form-control mt-2" rows="2"></textarea>
+        <button class="btn btn-primary mt-2" @onclick="SubmitRestaurantRating" disabled="@submittingRestaurant">
+            @(submittingRestaurant ? "Submitting..." : "Submit rating")
+        </button>
+        @if (restaurantRatingMessage != null)
+        {
+            <p class="success-msg">@restaurantRatingMessage</p>
+        }
+    </section>
+
+    @if (_discounts.Any())
+    {
+        <section class="detail-section">
+            <h2>🎓 Student discounts</h2>
+            @foreach (var discount in _discounts)
+            {
+                <div class="deal-card">
+                    <strong>-@discount.DiscountPercentage%</strong>
+                    <span>@discount.Description</span>
+                </div>
+            }
+        </section>
+    }
+
+    @if (_lunchDeals.Any())
+    {
+        <section class="detail-section">
+            <h2>🍽️ Lunch deals</h2>
+            @foreach (var deal in _lunchDeals)
+            {
+                <div class="deal-card">
+                    <div class="deal-title">@deal.Name — @deal.Price.ToString("0") kr</div>
+                    <div class="deal-desc">@deal.Description</div>
+                    <div class="deal-time">@deal.StartTime.ToString("HH:mm")–@deal.EndTime.ToString("HH:mm"), @deal.DaysOfWeek</div>
+                </div>
+            }
+        </section>
+    }
+
+    <section class="detail-section">
+        <h2>🍴 Dishes — rate each one!</h2>
+        <p class="feature-hint">LunchNear's unique feature: rate not just the restaurant, but every dish</p>
+        @foreach (var dish in _dishes)
+        {
+            <div class="dish-card">
+                <div class="dish-info">
+                    <strong>@dish.Name</strong>
+                    <span class="dish-price">@dish.Price.ToString("0.00") kr</span>
+                    @if (!string.IsNullOrEmpty(dish.Description))
+                    {
+                        <p class="dish-desc">@dish.Description</p>
+                    }
+                    <span class="rating-badge small">⭐ @(dish.AverageRating > 0 ? dish.AverageRating.ToString("0.0") : "—")</span>
+                </div>
+                <div class="dish-rating">
+                    <StarRating @bind-Value="dishRatings[dish.Id]" />
+                    <button class="btn btn-sm btn-outline-primary mt-1"
+                            @onclick="() => SubmitDishRating(dish.Id)"
+                            disabled="@submittingDishes.Contains(dish.Id)">
+                        Rate
+                    </button>
+                </div>
+            </div>
+        }
+    </section>
+}
+
+@code {
+    [Parameter] public int RestaurantId { get; set; }
+
+    private bool loading = true;
+    private RestaurantDto? _restaurant;
+    private List<StudentDiscountDto> _discounts = [];
+    private List<LunchDealDto> _lunchDeals = [];
+    private List<DishDto> _dishes = [];
+    private decimal _liveRating;
+    private int restaurantRating = 5;
+    private string restaurantReview = "";
+    private bool submittingRestaurant;
+    private string? restaurantRatingMessage;
+    private Dictionary<int, int> dishRatings = [];
+    private HashSet<int> submittingDishes = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        loading = true;
+        _restaurant = await Api.GetRestaurantAsync(RestaurantId);
+        if (_restaurant != null)
+        {
+            _discounts = await Api.GetStudentDiscountsAsync(RestaurantId);
+            _lunchDeals = await Api.GetLunchDealsAsync(RestaurantId);
+            _dishes = await Api.GetDishesAsync(RestaurantId);
+            _liveRating = await Api.GetRestaurantAverageRatingAsync(RestaurantId);
+            dishRatings = _dishes.ToDictionary(d => d.Id, _ => 5);
+        }
+        loading = false;
+    }
+
+    private async Task SubmitRestaurantRating()
+    {
+        submittingRestaurant = true;
+        restaurantRatingMessage = null;
+        try
+        {
+            var userId = await UserIdentity.GetUserIdAsync();
+            await Api.SubmitRestaurantRatingAsync(RestaurantId, new SubmitRatingRequest(
+                userId,
+                restaurantRating,
+                string.IsNullOrWhiteSpace(restaurantReview) ? null : restaurantReview));
+            _liveRating = await Api.GetRestaurantAverageRatingAsync(RestaurantId);
+            restaurantRatingMessage = "Thanks for your rating!";
+        }
+        catch
+        {
+            restaurantRatingMessage = "Something went wrong while submitting";
+        }
+        finally
+        {
+            submittingRestaurant = false;
+        }
+    }
+
+    private async Task SubmitDishRating(int dishId)
+    {
+        submittingDishes.Add(dishId);
+        try
+        {
+            var userId = await UserIdentity.GetUserIdAsync();
+            await Api.SubmitDishRatingAsync(dishId, new SubmitRatingRequest(userId, dishRatings[dishId]));
+            _dishes = await Api.GetDishesAsync(RestaurantId);
+        }
+        finally
+        {
+            submittingDishes.Remove(dishId);
+        }
+    }
+}
