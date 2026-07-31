@@ -1,6 +1,13 @@
 <Solution>
-  <Project Path="LunchNear.API/LunchNear.API.csproj" />
-  <Project Path="LunchNear.Shared/LunchNear.Shared.csproj" />
-  <Project Path="LunchNear.Tests/LunchNear.Tests.csproj" />
-  <Project Path="LunchNear/LunchNear.csproj" />
+  <Project Path="LunchNear.Domain.UnitTests/LunchNear.Domain.UnitTests.csproj" />
+  <Project Path="LunchNear.Domain/LunchNear.Domain.csproj" />
+  <Project Path="LunchNear.Contracts/LunchNear.Contracts.csproj" />
+  <Project Path="LunchNear.Application.UnitTests/LunchNear.Application.UnitTests.csproj" />
+  <Project Path="LunchNear.Application/LunchNear.Application.csproj" />
+  <Project Path="LunchNear.Infrastructure/LunchNear.Infrastructure.csproj" />
+  <Project Path="LunchNear.Api.IntegrationTests/LunchNear.Api.IntegrationTests.csproj" />
+  <Project Path="LunchNear.Api/LunchNear.Api.csproj" />
+  <Project Path="LunchNear.Web/LunchNear.Web.csproj" />
+  <Project Path="LunchNear.ServiceDefaults/LunchNear.ServiceDefaults.csproj" />
+  <Project Path="LunchNear.AppHost/LunchNear.AppHost.csproj" />
 </Solution>

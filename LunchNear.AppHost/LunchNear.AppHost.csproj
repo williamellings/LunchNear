@@ -1,0 +1,16 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.4.6">
+
+  <ItemGroup>
+    <ProjectReference Include="..\LunchNear.Api\LunchNear.Api.csproj" />
+    <ProjectReference Include="..\LunchNear.Web\LunchNear.Web.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>5eaf3d93-84da-4d63-a390-71bba4512e46</UserSecretsId>
+  </PropertyGroup>
+
+</Project>

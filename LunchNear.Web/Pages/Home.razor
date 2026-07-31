@@ -1,0 +1,23 @@
+﻿@page "/"
+@inject NavigationManager Nav
+
+<PageTitle>LunchNear</PageTitle>
+
+<div class="home-hero">
+    <div class="hero-icon">🍽️</div>
+    <h1>LunchNear</h1>
+    <p class="hero-tagline">Find lunch nearby with student discounts</p>
+    <ul class="hero-features">
+        <li>📍 Restaurants near you</li>
+        <li>🎓 Student discounts and lunch deals</li>
+        <li>⭐ Rate restaurants <strong>and every dish</strong></li>
+    </ul>
+    <a href="/restaurants" class="btn btn-primary btn-lg hero-cta">Browse restaurants</a>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        // Auto-redirect optional — keep landing for first impression
+    }
+}
