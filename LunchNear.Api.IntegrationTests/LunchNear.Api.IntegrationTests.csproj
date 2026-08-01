@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LunchNear.Api\LunchNear.Api.csproj" />
+    <ProjectReference Include="..\LunchNear.API\LunchNear.API.csproj" />
   </ItemGroup>
 
 </Project>

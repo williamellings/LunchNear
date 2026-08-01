@@ -6,7 +6,7 @@
   <Project Path="LunchNear.Application/LunchNear.Application.csproj" />
   <Project Path="LunchNear.Infrastructure/LunchNear.Infrastructure.csproj" />
   <Project Path="LunchNear.Api.IntegrationTests/LunchNear.Api.IntegrationTests.csproj" />
-  <Project Path="LunchNear.Api/LunchNear.Api.csproj" />
+  <Project Path="LunchNear.API/LunchNear.API.csproj" />
   <Project Path="LunchNear.Web/LunchNear.Web.csproj" />
   <Project Path="LunchNear.ServiceDefaults/LunchNear.ServiceDefaults.csproj" />
   <Project Path="LunchNear.AppHost/LunchNear.AppHost.csproj" />
