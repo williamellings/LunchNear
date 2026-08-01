@@ -15,7 +15,8 @@ var apiBaseUrl = builder.Configuration["ApiBaseUrl"]
 
 builder.Services.AddScoped(_ => new HttpClient
 {
-    BaseAddress = new Uri(apiBaseUrl)
+    BaseAddress = new Uri(apiBaseUrl),
+    Timeout = TimeSpan.FromSeconds(15)
 });
 builder.Services.AddScoped<LunchNearApiClient>();
 builder.Services.AddScoped<GeolocationService>();

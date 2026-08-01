@@ -15,4 +15,5 @@ public sealed record RestaurantDto(
     decimal AverageRating,
     int RatingsCount,
     bool HasStudentDiscount,
+    int? StudentDiscountPercentage,
     bool HasLunchDeals);

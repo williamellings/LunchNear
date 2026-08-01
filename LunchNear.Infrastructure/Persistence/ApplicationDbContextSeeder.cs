@@ -186,7 +186,8 @@ public sealed class ApplicationDbContextSeeder
             _ => PriceRange.Expensive
         };
 
-        int? studentDiscount = rng.Next(100) < 40 ? rng.Next(10, 21) : null;
+        // Student discounts are admin-curated only — never auto-generated from OSM data.
+        int? studentDiscount = null;
 
         LunchDealSeedSpec? lunchDeal = rng.Next(100) < 55
             ? new LunchDealSeedSpec(
@@ -249,7 +250,7 @@ public sealed class ApplicationDbContextSeeder
             "Kungsportsavenyn 14",
             PriceRange.Cheap,
             57.7008, 11.9765,
-            StudentDiscountPercentage: 15,
+            StudentDiscountPercentage: null,
             LunchDeal: new LunchDealSeedSpec("Business Lunch", 99m, new TimeOnly(11, 0), new TimeOnly(14, 0), "Mon-Fri"),
             Dishes: [("Meatballs with mash", 129m), ("Pea soup", 89m), ("Lingonberry cordial", 25m)]),
         new(
@@ -257,7 +258,7 @@ public sealed class ApplicationDbContextSeeder
             "Haga Nygata 9",
             PriceRange.Medium,
             57.6975, 11.9611,
-            StudentDiscountPercentage: 10,
+            StudentDiscountPercentage: null,
             LunchDeal: new LunchDealSeedSpec("Lunch Set", 135m, new TimeOnly(11, 0), new TimeOnly(15, 0), "Mon-Fri"),
             Dishes: [("Carbonara", 165m), ("Margherita", 145m), ("Tiramisu", 79m)]),
         new(
@@ -281,7 +282,7 @@ public sealed class ApplicationDbContextSeeder
             "Järntorget 4",
             PriceRange.Cheap,
             57.6989, 11.9553,
-            StudentDiscountPercentage: 20,
+            StudentDiscountPercentage: null,
             LunchDeal: new LunchDealSeedSpec("Green Lunch", 109m, new TimeOnly(11, 0), new TimeOnly(14, 30), "Mon-Fri"),
             Dishes: [("Buddha Bowl", 119m), ("Falafel Wrap", 89m), ("Smoothie", 55m)]),
         new(
@@ -289,7 +290,7 @@ public sealed class ApplicationDbContextSeeder
             "Karl Johansgatan 61",
             PriceRange.Medium,
             57.6960, 11.9330,
-            StudentDiscountPercentage: 12,
+            StudentDiscountPercentage: null,
             LunchDeal: new LunchDealSeedSpec("Lunch Special", 119m, new TimeOnly(11, 0), new TimeOnly(15, 0), "Mon-Sat"),
             Dishes: [("Fish & chips", 149m), ("West coast stew", 165m), ("Toast Skagen", 135m)]),
     ];

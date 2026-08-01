@@ -1,0 +1,26 @@
+<span class="rating-display @Size">
+    <span class="rating-stars" aria-hidden="true">
+        @for (var i = 1; i <= 5; i++)
+        {
+            <span class="rating-star @(i <= Math.Round(Value) ? "filled" : "")">★</span>
+        }
+    </span>
+    <strong>@Value.ToString("0.0")</strong>
+    @if (Count.HasValue)
+    {
+        <span class="rating-count">(@Count)</span>
+    }
+    <span class="visually-hidden">
+        @Value.ToString("0.0") out of 5
+        @if (Count.HasValue)
+        {
+            <text> from @Count ratings</text>
+        }
+    </span>
+</span>
+
+@code {
+    [Parameter] public decimal Value { get; set; }
+    [Parameter] public int? Count { get; set; }
+    [Parameter] public string Size { get; set; } = "small";
+}

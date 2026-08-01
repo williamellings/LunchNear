@@ -2,13 +2,13 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--color-bg);
+    background: var(--background);
 }
 
 .app-main {
     flex: 1;
-    padding: 1.25rem 1.1rem 6rem;
-    max-width: 640px;
+    padding: 1.5rem 1rem 7rem;
+    max-width: 30rem;
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
@@ -16,57 +16,63 @@
 
 .bottom-nav {
     position: fixed;
-    bottom: 0.9rem;
-    left: 1rem;
-    right: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.35rem;
-    background: rgba(255, 255, 255, 0.9);
+    inset: auto 0 0;
+    z-index: 100;
+    border-top: 1px solid var(--border);
+    background: color-mix(in srgb, var(--card) 95%, transparent);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    padding: 0.5rem;
-    z-index: 100;
-    max-width: 360px;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav-inner {
+    display: flex;
+    align-items: stretch;
+    gap: 0.25rem;
+    max-width: 30rem;
     margin: 0 auto;
-    box-shadow: var(--shadow-lg);
+    padding: 0.5rem 1rem;
 }
 
 .bottom-nav .nav-item {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.55rem 1.2rem;
-    color: var(--color-muted);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border-radius: 999px;
-    transition: all 0.18s ease;
+    min-height: 3rem;
     flex: 1;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: color 160ms ease, background-color 160ms ease;
+}
+
+.bottom-nav .nav-item:hover {
+    color: var(--foreground);
+    background: var(--secondary);
 }
 
 .bottom-nav .nav-item.active {
-    color: #fff;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-    box-shadow: 0 6px 16px rgba(255, 107, 74, 0.35);
+    color: var(--accent-foreground);
+    background: var(--accent);
 }
 
 .bottom-nav .nav-icon {
-    font-size: 1.1rem;
-    line-height: 1;
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-@media (min-width: 641px) {
-    .app-shell {
-        border-left: 1px solid var(--color-border);
-        border-right: 1px solid var(--color-border);
-        max-width: 640px;
-        margin: 0 auto;
-        box-shadow: var(--shadow-lg);
+@media (min-width: 640px) {
+    .app-main {
+        padding-inline: 1.5rem;
     }
 }

@@ -13,7 +13,7 @@ window.lunchnearGeo = {
                     });
                 },
                 function (err) { reject(err); },
-                { enableHighAccuracy: true, timeout: 10000 }
+                { enableHighAccuracy: false, timeout: 5000, maximumAge: 300000 }
             );
         });
     },
