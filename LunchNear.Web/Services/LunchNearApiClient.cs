@@ -43,8 +43,22 @@ public class LunchNearApiClient
     public async Task<List<StudentDiscountDto>> GetStudentDiscountsAsync(int restaurantId)
         => await _http.GetFromJsonAsync<List<StudentDiscountDto>>($"api/restaurants/{restaurantId}/studentdiscounts") ?? [];
 
+    public async Task<StudentDiscountDto> AddStudentDiscountAsync(int restaurantId, CreateStudentDiscountRequest request)
+    {
+        var response = await _http.PostAsJsonAsync($"api/restaurants/{restaurantId}/studentdiscounts", request);
+        response.EnsureSuccessStatusCode();
+        return (await response.Content.ReadFromJsonAsync<StudentDiscountDto>())!;
+    }
+
     public async Task<List<LunchDealDto>> GetLunchDealsAsync(int restaurantId)
         => await _http.GetFromJsonAsync<List<LunchDealDto>>($"api/restaurants/{restaurantId}/lunchdeals") ?? [];
+
+    public async Task<LunchDealDto> AddLunchDealAsync(int restaurantId, CreateLunchDealRequest request)
+    {
+        var response = await _http.PostAsJsonAsync($"api/restaurants/{restaurantId}/lunchdeals", request);
+        response.EnsureSuccessStatusCode();
+        return (await response.Content.ReadFromJsonAsync<LunchDealDto>())!;
+    }
 
     public async Task<List<DishDto>> GetDishesAsync(int restaurantId)
         => await _http.GetFromJsonAsync<List<DishDto>>($"api/restaurants/{restaurantId}/dishes") ?? [];

@@ -1,10 +1,15 @@
 {
+  "id": "/",
   "name": "LunchNear",
   "short_name": "LunchNear",
+  "description": "Find nearby restaurants, student discounts, lunch deals and dish ratings in Gothenburg.",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#FAFAFB",
-  "theme_color": "#FF6B4A",
+  "orientation": "portrait-primary",
+  "background_color": "#FBF9F4",
+  "theme_color": "#C95736",
+  "categories": ["food", "lifestyle", "navigation"],
   "icons": [
     {
       "src": "icon-192.png",

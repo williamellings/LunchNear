@@ -19,7 +19,12 @@ public sealed class MappingRegister : IRegister
         config.NewConfig<Restaurant, RestaurantDto>()
             .Map(dest => dest.PriceRange, src => src.PriceRange.ToString())
             .Map(dest => dest.Latitude, src => src.Location.Latitude)
-            .Map(dest => dest.Longitude, src => src.Location.Longitude);
+            .Map(dest => dest.Longitude, src => src.Location.Longitude)
+            .Map(
+                dest => dest.StudentDiscountPercentage,
+                src => src.StudentDiscounts.Count > 0
+                    ? src.StudentDiscounts.Max(d => d.DiscountPercentage)
+                    : (int?)null);
 
         config.NewConfig<Dish, DishDto>();
 

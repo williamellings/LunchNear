@@ -1,0 +1,192 @@
+{
+  "currentUser": {
+    "id": "lovable-preview-user",
+    "latitude": 57.7008,
+    "longitude": 11.9765
+  },
+  "nearbyRestaurants": [
+    {
+      "restaurant": {
+        "id": 1,
+        "name": "Panos Panos Tavern",
+        "address": "Teknologgatan 3",
+        "priceRange": "Medium",
+        "latitude": 57.6940423,
+        "longitude": 11.9778123,
+        "averageRating": 4.5,
+        "ratingsCount": 128,
+        "hasStudentDiscount": false,
+        "hasLunchDeals": true
+      },
+      "distanceKm": 0.8
+    },
+    {
+      "restaurant": {
+        "id": 2,
+        "name": "Zaika Flavour of India",
+        "address": "Teatergatan 32",
+        "priceRange": "Medium",
+        "latitude": 57.698797,
+        "longitude": 11.9762,
+        "averageRating": 4.3,
+        "ratingsCount": 94,
+        "hasStudentDiscount": true,
+        "hasLunchDeals": true
+      },
+      "distanceKm": 0.3
+    },
+    {
+      "restaurant": {
+        "id": 3,
+        "name": "Lilla London",
+        "address": "Kungsportsavenyen 19",
+        "priceRange": "Cheap",
+        "latitude": 57.7003592,
+        "longitude": 11.9744806,
+        "averageRating": 4.1,
+        "ratingsCount": 76,
+        "hasStudentDiscount": true,
+        "hasLunchDeals": false
+      },
+      "distanceKm": 0.2
+    },
+    {
+      "restaurant": {
+        "id": 4,
+        "name": "Trattoria da Pasquale",
+        "address": "Sten Sturegatan 17",
+        "priceRange": "Expensive",
+        "latitude": 57.7000034,
+        "longitude": 11.9845678,
+        "averageRating": 4.7,
+        "ratingsCount": 211,
+        "hasStudentDiscount": false,
+        "hasLunchDeals": true
+      },
+      "distanceKm": 0.5
+    }
+  ],
+  "restaurantDetails": {
+    "1": {
+      "restaurant": {
+        "id": 1,
+        "name": "Panos Panos Tavern",
+        "address": "Teknologgatan 3",
+        "priceRange": "Medium",
+        "latitude": 57.6940423,
+        "longitude": 11.9778123,
+        "averageRating": 4.5,
+        "ratingsCount": 128,
+        "hasStudentDiscount": false,
+        "hasLunchDeals": true
+      },
+      "distanceKm": 0.8,
+      "discounts": [],
+      "lunchDeals": [
+        {
+          "id": 101,
+          "restaurantId": 1,
+          "name": "Weekday Lunch",
+          "description": "Main course, salad and coffee",
+          "price": 153,
+          "startTime": "11:00",
+          "endTime": "14:30",
+          "daysOfWeek": "Mon-Fri"
+        }
+      ],
+      "dishes": [
+        {
+          "id": 1001,
+          "restaurantId": 1,
+          "name": "Gyros",
+          "description": "Pita, grilled meat, vegetables and tzatziki",
+          "price": 134,
+          "averageRating": 4.8,
+          "ratingsCount": 47
+        },
+        {
+          "id": 1002,
+          "restaurantId": 1,
+          "name": "Greek Salad",
+          "description": "Tomato, cucumber, olives and feta",
+          "price": 95,
+          "averageRating": 4.4,
+          "ratingsCount": 31
+        },
+        {
+          "id": 1003,
+          "restaurantId": 1,
+          "name": "Baklava",
+          "description": "Layered pastry with nuts and honey",
+          "price": 55,
+          "averageRating": 4.6,
+          "ratingsCount": 22
+        }
+      ]
+    },
+    "2": {
+      "restaurant": {
+        "id": 2,
+        "name": "Zaika Flavour of India",
+        "address": "Teatergatan 32",
+        "priceRange": "Medium",
+        "latitude": 57.698797,
+        "longitude": 11.9762,
+        "averageRating": 4.3,
+        "ratingsCount": 94,
+        "hasStudentDiscount": true,
+        "hasLunchDeals": true
+      },
+      "distanceKm": 0.3,
+      "discounts": [
+        {
+          "id": 201,
+          "restaurantId": 2,
+          "description": "Valid student ID required. Demo data, not verified by the restaurant.",
+          "discountPercentage": 15
+        }
+      ],
+      "lunchDeals": [
+        {
+          "id": 202,
+          "restaurantId": 2,
+          "name": "Lunch Deal",
+          "description": "Daily lunch offer. Demo data, not verified by the restaurant.",
+          "price": 135,
+          "startTime": "11:00",
+          "endTime": "15:00",
+          "daysOfWeek": "Mon-Fri"
+        }
+      ],
+      "dishes": [
+        {
+          "id": 2001,
+          "restaurantId": 2,
+          "name": "Chicken Tikka Masala",
+          "description": "Creamy tomato curry with basmati rice",
+          "price": 145,
+          "averageRating": 4.7,
+          "ratingsCount": 63
+        },
+        {
+          "id": 2002,
+          "restaurantId": 2,
+          "name": "Garlic Naan",
+          "description": "Freshly baked flatbread with garlic",
+          "price": 45,
+          "averageRating": 4.5,
+          "ratingsCount": 58
+        },
+        {
+          "id": 2003,
+          "restaurantId": 2,
+          "name": "Mango Lassi",
+          "description": null,
+          "price": 39,
+          "averageRating": 4.2,
+          "ratingsCount": 19
+        }
+      ]
+    }
+  }
+}

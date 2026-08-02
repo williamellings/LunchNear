@@ -6,92 +6,181 @@
 
 @if (loading)
 {
-    <div class="loading-state">Loading...</div>
+    <a href="/restaurants" class="back-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        Restaurants
+    </a>
+    <div class="detail-skeleton">
+        <div class="skeleton detail-image-skeleton"></div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-line"></div>
+        <div class="skeleton detail-panel-skeleton"></div>
+    </div>
 }
 else if (_restaurant == null)
 {
-    <div class="empty-state">Restaurant not found</div>
+    <a href="/restaurants" class="back-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        Restaurants
+    </a>
+    <div class="state-panel detail-state">
+        <span class="state-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9 9h.01"></path><path d="M15 9h.01"></path><path d="M9.5 16c1.5-1 3.5-1 5 0"></path></svg></span>
+        <h2>Details unavailable</h2>
+        <p>We don't have menu, deals or dish information for this restaurant yet.</p>
+        <a href="/restaurants" class="secondary-button">Back to restaurants</a>
+    </div>
 }
 else
 {
+    <a href="/restaurants" class="back-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        Restaurants
+    </a>
+
     <div class="detail-header">
-        <a href="/restaurants" class="back-link">← Back</a>
-        <h1>@_restaurant.Name</h1>
-        <p class="address">@_restaurant.Address</p>
-        <div class="detail-meta">
-            <span class="rating-badge">⭐ @(_liveRating > 0 ? _liveRating.ToString("0.0") : _restaurant.AverageRating.ToString("0.0"))</span>
-            <span class="badge price">@_restaurant.PriceRange</span>
+        <div class="detail-title-row">
+            <h1>@_restaurant.Name</h1>
+            <span class="price-badge" title="@($"{_restaurant.PriceRange} price range")">@PriceSymbol(_restaurant.PriceRange)</span>
         </div>
+        <p class="restaurant-address">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+            @_restaurant.Address
+        </p>
+        <div class="detail-rating">
+            <RatingDisplay Value="@(_liveRating > 0 ? _liveRating : _restaurant.AverageRating)" Count="@_liveRatingsCount" Size="medium" />
+        </div>
+        @if (_discounts.Any())
+        {
+            var topDiscount = _discounts.MaxBy(d => d.DiscountPercentage)!;
+            <div class="detail-discount-highlight glow" aria-label="@($"{topDiscount.DiscountPercentage} percent student discount")">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 7 10-5 10 5-10 5Z"></path><path d="M6 9.5V16c3 2 9 2 12 0V9.5"></path></svg>
+                <strong>@topDiscount.DiscountPercentage% student discount</strong>
+                @if (!string.IsNullOrWhiteSpace(topDiscount.Description))
+                {
+                    <span>@topDiscount.Description</span>
+                }
+            </div>
+        }
     </div>
 
-    <section class="detail-section">
-        <h2>Rate this restaurant</h2>
-        <StarRating @bind-Value="restaurantRating" />
-        <textarea @bind="restaurantReview" placeholder="Comment (optional)" class="form-control mt-2" rows="2"></textarea>
-        <button class="btn btn-primary mt-2" @onclick="SubmitRestaurantRating" disabled="@submittingRestaurant">
-            @(submittingRestaurant ? "Submitting..." : "Submit rating")
-        </button>
-        @if (restaurantRatingMessage != null)
-        {
-            <p class="success-msg">@restaurantRatingMessage</p>
-        }
+    <section class="rating-panel" aria-labelledby="rate-restaurant-heading">
+        <h2 id="rate-restaurant-heading">Rate this restaurant</h2>
+        <p>Your overall experience at @_restaurant.Name.</p>
+        <div class="restaurant-star-picker">
+            <StarRating @bind-Value="restaurantRating" Label="Restaurant rating" Size="large" Disabled="@submittingRestaurant" />
+        </div>
+        <label for="restaurant-review">Review (optional)</label>
+        <textarea id="restaurant-review"
+                  @bind="restaurantReview"
+                  placeholder="What made lunch here good?"
+                  rows="3"
+                  disabled="@submittingRestaurant"></textarea>
+        <div class="rating-submit-row">
+            <button class="primary-button" @onclick="SubmitRestaurantRating" disabled="@(submittingRestaurant || restaurantRating < 1)">
+                @if (submittingRestaurant)
+                {
+                    <span class="button-spinner" aria-hidden="true"></span>
+                }
+                @(submittingRestaurant ? "Submitting..." : "Submit rating")
+            </button>
+            @if (restaurantRatingMessage != null)
+            {
+                <p class="submission-message @(restaurantRatingSucceeded ? "success" : "error")" aria-live="polite">@restaurantRatingMessage</p>
+            }
+        </div>
     </section>
 
     @if (_discounts.Any())
     {
-        <section class="detail-section">
-            <h2>🎓 Student discounts</h2>
+        <section class="content-section" aria-labelledby="discount-heading">
+            <h2 id="discount-heading">Student discount</h2>
+            <div class="section-stack">
             @foreach (var discount in _discounts)
             {
-                <div class="deal-card">
-                    <strong>-@discount.DiscountPercentage%</strong>
-                    <span>@discount.Description</span>
-                </div>
+                <article class="discount-card glow">
+                    <span class="deal-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 7 10-5 10 5-10 5Z"></path><path d="M6 9.5V16c3 2 9 2 12 0V9.5"></path></svg></span>
+                    <div>
+                        <h3>@discount.DiscountPercentage% student discount</h3>
+                        <p>@discount.Description</p>
+                    </div>
+                </article>
             }
+            </div>
         </section>
     }
 
     @if (_lunchDeals.Any())
     {
-        <section class="detail-section">
-            <h2>🍽️ Lunch deals</h2>
+        <section class="content-section" aria-labelledby="deals-heading">
+            <h2 id="deals-heading">Lunch deals</h2>
+            <div class="section-stack">
             @foreach (var deal in _lunchDeals)
             {
-                <div class="deal-card">
-                    <div class="deal-title">@deal.Name — @deal.Price.ToString("0") kr</div>
-                    <div class="deal-desc">@deal.Description</div>
-                    <div class="deal-time">@deal.StartTime.ToString("HH:mm")–@deal.EndTime.ToString("HH:mm"), @deal.DaysOfWeek</div>
-                </div>
+                <article class="lunch-deal-card">
+                    <div class="deal-heading">
+                        <h3>@deal.Name</h3>
+                        <span>@deal.Price.ToString("0") kr</span>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(deal.Description))
+                    {
+                        <p>@deal.Description</p>
+                    }
+                    <div class="deal-meta">
+                        <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>@deal.StartTime.ToString("HH:mm")–@deal.EndTime.ToString("HH:mm")</span>
+                        <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4"></path><path d="M8 3v4"></path><path d="M3 10h18"></path></svg>@deal.DaysOfWeek</span>
+                    </div>
+                </article>
             }
+            </div>
         </section>
     }
 
-    <section class="detail-section">
-        <h2>🍴 Dishes — rate each one!</h2>
-        <p class="feature-hint">LunchNear's unique feature: rate not just the restaurant, but every dish</p>
+    <section class="content-section" aria-labelledby="dishes-heading">
+        <h2 id="dishes-heading">Dishes</h2>
+        <p class="section-description">Each dish is rated on its own, separately from the restaurant.</p>
+        <div class="section-stack">
         @foreach (var dish in _dishes)
         {
-            <div class="dish-card">
-                <div class="dish-info">
-                    <strong>@dish.Name</strong>
-                    <span class="dish-price">@dish.Price.ToString("0.00") kr</span>
-                    @if (!string.IsNullOrEmpty(dish.Description))
-                    {
-                        <p class="dish-desc">@dish.Description</p>
-                    }
-                    <span class="rating-badge small">⭐ @(dish.AverageRating > 0 ? dish.AverageRating.ToString("0.0") : "—")</span>
+            <article class="dish-card">
+                <div class="dish-heading">
+                    <div>
+                        <h3>@dish.Name</h3>
+                        @if (!string.IsNullOrEmpty(dish.Description))
+                        {
+                            <p>@dish.Description</p>
+                        }
+                    </div>
+                    <strong>@dish.Price.ToString("0.00") kr</strong>
                 </div>
-                <div class="dish-rating">
-                    <StarRating @bind-Value="dishRatings[dish.Id]" />
-                    <button class="btn btn-sm btn-outline-primary mt-1"
+                <RatingDisplay Value="@dish.AverageRating" Count="@dish.RatingsCount" />
+                <div class="dish-rating-row">
+                    <StarRating @bind-Value="dishRatings[dish.Id]"
+                                Label="@($"Rate {dish.Name}")"
+                                Disabled="@submittingDishes.Contains(dish.Id)" />
+                    <button class="secondary-button compact"
                             @onclick="() => SubmitDishRating(dish.Id)"
-                            disabled="@submittingDishes.Contains(dish.Id)">
+                            disabled="@(submittingDishes.Contains(dish.Id) || dishRatings[dish.Id] < 1)">
+                        @if (submittingDishes.Contains(dish.Id))
+                        {
+                            <span class="button-spinner dark" aria-hidden="true"></span>
+                        }
                         Rate
                     </button>
                 </div>
-            </div>
+                @if (ratedDishes.Contains(dish.Id))
+                {
+                    <p class="submission-message success" aria-live="polite">Thanks — your dish rating was added.</p>
+                }
+                else if (dishRatingErrors.Contains(dish.Id))
+                {
+                    <p class="submission-message error" aria-live="polite">Couldn't submit this dish rating.</p>
+                }
+            </article>
         }
+        </div>
     </section>
+
+    <p class="demo-note">Restaurant names and locations come from OpenStreetMap. Lunch deals and dish information may be curated by LunchNear and are not verified by the restaurants unless marked otherwise.</p>
 }
 
 @code {
@@ -103,17 +192,16 @@ else
     private List<LunchDealDto> _lunchDeals = [];
     private List<DishDto> _dishes = [];
     private decimal _liveRating;
-    private int restaurantRating = 5;
+    private int _liveRatingsCount;
+    private int restaurantRating;
     private string restaurantReview = "";
     private bool submittingRestaurant;
     private string? restaurantRatingMessage;
+    private bool restaurantRatingSucceeded;
     private Dictionary<int, int> dishRatings = [];
     private HashSet<int> submittingDishes = [];
-
-    protected override async Task OnInitializedAsync()
-    {
-        await LoadData();
-    }
+    private HashSet<int> ratedDishes = [];
+    private HashSet<int> dishRatingErrors = [];
 
     protected override async Task OnParametersSetAsync()
     {
@@ -130,7 +218,8 @@ else
             _lunchDeals = await Api.GetLunchDealsAsync(RestaurantId);
             _dishes = await Api.GetDishesAsync(RestaurantId);
             _liveRating = await Api.GetRestaurantAverageRatingAsync(RestaurantId);
-            dishRatings = _dishes.ToDictionary(d => d.Id, _ => 5);
+            _liveRatingsCount = _restaurant.RatingsCount;
+            dishRatings = _dishes.ToDictionary(d => d.Id, _ => 0);
         }
         loading = false;
     }
@@ -139,6 +228,7 @@ else
     {
         submittingRestaurant = true;
         restaurantRatingMessage = null;
+        restaurantRatingSucceeded = false;
         try
         {
             var userId = await UserIdentity.GetUserIdAsync();
@@ -147,11 +237,13 @@ else
                 restaurantRating,
                 string.IsNullOrWhiteSpace(restaurantReview) ? null : restaurantReview));
             _liveRating = await Api.GetRestaurantAverageRatingAsync(RestaurantId);
-            restaurantRatingMessage = "Thanks for your rating!";
+            _liveRatingsCount++;
+            restaurantRatingSucceeded = true;
+            restaurantRatingMessage = $"Thanks! New average {_liveRating:0.0}";
         }
         catch
         {
-            restaurantRatingMessage = "Something went wrong while submitting";
+            restaurantRatingMessage = "Couldn't submit — try again";
         }
         finally
         {
@@ -162,15 +254,30 @@ else
     private async Task SubmitDishRating(int dishId)
     {
         submittingDishes.Add(dishId);
+        ratedDishes.Remove(dishId);
+        dishRatingErrors.Remove(dishId);
         try
         {
             var userId = await UserIdentity.GetUserIdAsync();
             await Api.SubmitDishRatingAsync(dishId, new SubmitRatingRequest(userId, dishRatings[dishId]));
             _dishes = await Api.GetDishesAsync(RestaurantId);
+            ratedDishes.Add(dishId);
+        }
+        catch
+        {
+            dishRatingErrors.Add(dishId);
         }
         finally
         {
             submittingDishes.Remove(dishId);
         }
     }
+
+    private static string PriceSymbol(string priceRange) => priceRange switch
+    {
+        "Cheap" => "kr",
+        "Medium" => "kr kr",
+        "Expensive" => "kr kr kr",
+        _ => priceRange
+    };
 }

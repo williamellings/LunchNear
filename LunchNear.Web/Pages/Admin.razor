@@ -1,0 +1,293 @@
+@page "/admin"
+@inject LunchNearApiClient Api
+
+<PageTitle>Admin — LunchNear</PageTitle>
+
+<header class="page-header">
+    <h1>Admin</h1>
+    <p>Add student discounts and lunch deals to restaurants</p>
+</header>
+
+@if (loadingRestaurants)
+{
+    <p class="admin-note" aria-live="polite">Loading restaurants...</p>
+}
+else if (restaurantLoadError != null)
+{
+    <div class="state-panel">
+        <h2>Couldn't load restaurants</h2>
+        <p>@restaurantLoadError</p>
+        <button type="button" class="primary-button" @onclick="LoadRestaurantsAsync">Try again</button>
+    </div>
+}
+else
+{
+    <section class="admin-panel">
+        <label for="restaurant-select">Restaurant</label>
+        <select id="restaurant-select" value="@selectedRestaurantId" @onchange="OnRestaurantSelectedAsync">
+            <option value="0">Choose a restaurant</option>
+            @foreach (var restaurant in restaurants)
+            {
+                <option value="@restaurant.Id">@restaurant.Name — @restaurant.Address</option>
+            }
+        </select>
+    </section>
+
+    @if (selectedRestaurantId > 0)
+    {
+        <section class="admin-panel">
+            <h2>Student discount</h2>
+            <p class="admin-note">The green badge appears on the restaurant only after you save a discount here.</p>
+
+            @if (existingDiscounts.Any())
+            {
+                <ul class="admin-existing-list">
+                    @foreach (var discount in existingDiscounts)
+                    {
+                        <li>
+                            <strong>@discount.DiscountPercentage%</strong>
+                            <span>@discount.Description</span>
+                        </li>
+                    }
+                </ul>
+            }
+
+            <label for="discount-description">Description</label>
+            <input id="discount-description" type="text" @bind="discountDescription" placeholder="e.g. Valid student ID required" />
+
+            <label for="discount-percent">Discount (%)</label>
+            <input id="discount-percent" type="number" min="1" max="100" @bind="discountPercent" />
+
+            <button type="button" class="primary-button" @onclick="SaveDiscountAsync" disabled="@savingDiscount">
+                @(savingDiscount ? "Saving..." : "Add student discount")
+            </button>
+            @if (discountMessage != null)
+            {
+                <p class="submission-message @(discountSucceeded ? "success" : "error")">@discountMessage</p>
+            }
+        </section>
+
+        <section class="admin-panel">
+            <h2>Lunch deal</h2>
+
+            @if (existingDeals.Any())
+            {
+                <ul class="admin-existing-list">
+                    @foreach (var deal in existingDeals)
+                    {
+                        <li>
+                            <strong>@deal.Name — @deal.Price.ToString("0") kr</strong>
+                            <span>@deal.StartTime.ToString("HH:mm")–@deal.EndTime.ToString("HH:mm"), @deal.DaysOfWeek</span>
+                        </li>
+                    }
+                </ul>
+            }
+
+            <label for="deal-name">Name</label>
+            <input id="deal-name" type="text" @bind="dealName" placeholder="e.g. Lunch special" />
+
+            <label for="deal-description">Description (optional)</label>
+            <input id="deal-description" type="text" @bind="dealDescription" placeholder="e.g. Soup, main and coffee" />
+
+            <label for="deal-price">Price (kr)</label>
+            <input id="deal-price" type="number" min="0" step="1" @bind="dealPrice" />
+
+            <div class="admin-time-row">
+                <div>
+                    <label for="deal-start">Start time</label>
+                    <input id="deal-start" type="time" @bind="dealStartTime" />
+                </div>
+                <div>
+                    <label for="deal-end">End time</label>
+                    <input id="deal-end" type="time" @bind="dealEndTime" />
+                </div>
+            </div>
+
+            <label for="deal-days">Days</label>
+            <input id="deal-days" type="text" @bind="dealDays" placeholder="e.g. Mon-Fri" />
+
+            <button type="button" class="primary-button" @onclick="SaveLunchDealAsync" disabled="@savingDeal">
+                @(savingDeal ? "Saving..." : "Add lunch deal")
+            </button>
+            @if (dealMessage != null)
+            {
+                <p class="submission-message @(dealSucceeded ? "success" : "error")">@dealMessage</p>
+            }
+        </section>
+
+        <p class="admin-note">
+            <a href="/restaurant/@selectedRestaurantId">View this restaurant in the app</a>
+        </p>
+    }
+}
+
+<p class="admin-note"><a href="/">Back to home</a></p>
+
+@code {
+    private bool loadingRestaurants = true;
+    private string? restaurantLoadError;
+    private List<RestaurantDto> restaurants = [];
+    private int selectedRestaurantId;
+    private List<StudentDiscountDto> existingDiscounts = [];
+    private List<LunchDealDto> existingDeals = [];
+
+    private string discountDescription = "Valid student ID required";
+    private int discountPercent = 10;
+    private bool savingDiscount;
+    private string? discountMessage;
+    private bool discountSucceeded;
+
+    private string dealName = "Lunch deal";
+    private string dealDescription = "";
+    private decimal dealPrice = 99;
+    private TimeOnly dealStartTime = new(11, 0);
+    private TimeOnly dealEndTime = new(14, 0);
+    private string dealDays = "Mon-Fri";
+    private bool savingDeal;
+    private string? dealMessage;
+    private bool dealSucceeded;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadRestaurantsAsync();
+    }
+
+    private async Task LoadRestaurantsAsync()
+    {
+        loadingRestaurants = true;
+        restaurantLoadError = null;
+
+        try
+        {
+            var loadTask = Api.GetRestaurantsAsync();
+            var completed = await Task.WhenAny(loadTask, Task.Delay(TimeSpan.FromSeconds(12)));
+
+            if (completed != loadTask)
+            {
+                restaurantLoadError = "API didn't respond. Make sure the API is running on http://localhost:5022";
+                return;
+            }
+
+            restaurants = await loadTask;
+        }
+        catch (Exception ex)
+        {
+            restaurantLoadError = ex.Message;
+        }
+        finally
+        {
+            loadingRestaurants = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task OnRestaurantSelectedAsync(ChangeEventArgs e)
+    {
+        if (!int.TryParse(e.Value?.ToString(), out var id))
+        {
+            selectedRestaurantId = 0;
+            return;
+        }
+
+        selectedRestaurantId = id;
+        await LoadRestaurantDetailsAsync();
+    }
+
+    private async Task LoadRestaurantDetailsAsync()
+    {
+        discountMessage = null;
+        dealMessage = null;
+
+        if (selectedRestaurantId <= 0)
+        {
+            existingDiscounts = [];
+            existingDeals = [];
+            return;
+        }
+
+        try
+        {
+            existingDiscounts = await Api.GetStudentDiscountsAsync(selectedRestaurantId);
+            existingDeals = await Api.GetLunchDealsAsync(selectedRestaurantId);
+        }
+        catch (Exception ex)
+        {
+            restaurantLoadError = $"Couldn't load restaurant details: {ex.Message}";
+        }
+    }
+
+    private async Task SaveDiscountAsync()
+    {
+        if (selectedRestaurantId <= 0)
+        {
+            return;
+        }
+
+        savingDiscount = true;
+        discountMessage = null;
+        discountSucceeded = false;
+
+        try
+        {
+            await Api.AddStudentDiscountAsync(
+                selectedRestaurantId,
+                new CreateStudentDiscountRequest(discountDescription.Trim(), discountPercent));
+
+            existingDiscounts = await Api.GetStudentDiscountsAsync(selectedRestaurantId);
+            discountSucceeded = true;
+            discountMessage = "Student discount saved. It will show with the green badge.";
+        }
+        catch (Exception ex)
+        {
+            discountMessage = $"Couldn't save discount: {ex.Message}";
+        }
+        finally
+        {
+            savingDiscount = false;
+        }
+    }
+
+    private async Task SaveLunchDealAsync()
+    {
+        if (selectedRestaurantId <= 0)
+        {
+            return;
+        }
+
+        if (dealEndTime <= dealStartTime)
+        {
+            dealMessage = "End time must be after start time.";
+            dealSucceeded = false;
+            return;
+        }
+
+        savingDeal = true;
+        dealMessage = null;
+        dealSucceeded = false;
+
+        try
+        {
+            await Api.AddLunchDealAsync(
+                selectedRestaurantId,
+                new CreateLunchDealRequest(
+                    dealName.Trim(),
+                    string.IsNullOrWhiteSpace(dealDescription) ? null : dealDescription.Trim(),
+                    dealPrice,
+                    dealStartTime,
+                    dealEndTime,
+                    dealDays.Trim()));
+
+            existingDeals = await Api.GetLunchDealsAsync(selectedRestaurantId);
+            dealSucceeded = true;
+            dealMessage = "Lunch deal saved.";
+        }
+        catch (Exception ex)
+        {
+            dealMessage = $"Couldn't save lunch deal: {ex.Message}";
+        }
+        finally
+        {
+            savingDeal = false;
+        }
+    }
+}

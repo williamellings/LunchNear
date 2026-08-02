@@ -1,23 +1,51 @@
 ﻿@page "/"
-@inject NavigationManager Nav
 
-<PageTitle>LunchNear</PageTitle>
+<PageTitle>LunchNear — Student lunch deals in Gothenburg</PageTitle>
 
-<div class="home-hero">
-    <div class="hero-icon">🍽️</div>
-    <h1>LunchNear</h1>
-    <p class="hero-tagline">Find lunch nearby with student discounts</p>
-    <ul class="hero-features">
-        <li>📍 Restaurants near you</li>
-        <li>🎓 Student discounts and lunch deals</li>
-        <li>⭐ Rate restaurants <strong>and every dish</strong></li>
+<header class="brand-header">
+    <span class="brand-mark">LN</span>
+    <span class="brand-name">LunchNear</span>
+</header>
+
+<section class="home-hero">
+    <span class="location-kicker">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+        Gothenburg
+    </span>
+    <h1>Find lunch nearby with student discounts</h1>
+    <p>Good food between lectures, without overpaying. LunchNear shows what's close, what's discounted and what's actually worth ordering.</p>
+    <a href="/restaurants" class="primary-action">
+        Browse restaurants
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+    </a>
+</section>
+
+<section class="value-section" aria-labelledby="why-lunchnear">
+    <h2 id="why-lunchnear" class="visually-hidden">Why LunchNear</h2>
+    <ul class="value-list">
+        <li class="value-card">
+            <span class="value-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span>
+            <div>
+                <h3>Restaurants near you</h3>
+                <p>See what's within walking distance of campus, sorted by how close it is.</p>
+            </div>
+        </li>
+        <li class="value-card">
+            <span class="value-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7"></path><path d="m2 7 10-5 10 5-10 5Z"></path><path d="M6 9.5V16c3 2 9 2 12 0V9.5"></path></svg></span>
+            <div>
+                <h3>Student discounts and lunch deals</h3>
+                <p>Spot the places with a student price before you sit down.</p>
+            </div>
+        </li>
+        <li class="value-card">
+            <span class="value-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2l-5-4.9 6.9-1Z"></path></svg></span>
+            <div>
+                <h3>Rate restaurants and every dish</h3>
+                <p>A great place can still have a weak dish. Rate them separately.</p>
+            </div>
+        </li>
     </ul>
-    <a href="/restaurants" class="btn btn-primary btn-lg hero-cta">Browse restaurants</a>
-</div>
+</section>
 
-@code {
-    protected override void OnInitialized()
-    {
-        // Auto-redirect optional — keep landing for first impression
-    }
-}
+<p class="demo-note">Restaurant names and locations come from OpenStreetMap. Student discounts are added by LunchNear when verified. Lunch deals and dish information may not be verified by the restaurants.</p>
+<p class="admin-link"><a href="/admin">Admin — add discounts &amp; lunch deals</a></p>

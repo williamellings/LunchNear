@@ -1,18 +1,41 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
 
 <div class="app-shell">
     <main class="app-main">
         @Body
     </main>
 
-    <nav class="bottom-nav">
+    <nav class="bottom-nav" aria-label="Main">
+        <div class="bottom-nav-inner">
         <NavLink href="/" Match="NavLinkMatch.All" class="nav-item">
-            <span class="nav-icon">🏠</span>
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m3 10.5 9-7 9 7"></path>
+                <path d="M5 9.5V21h14V9.5"></path>
+                <path d="M9 21v-7h6v7"></path>
+            </svg>
             <span>Home</span>
         </NavLink>
-        <NavLink href="/restaurants" class="nav-item">
-            <span class="nav-icon">🍽️</span>
+        <a href="/restaurants" class="nav-item @(IsRestaurantsActive ? "active" : "")" aria-current="@(IsRestaurantsActive ? "page" : null)">
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 2v7c0 1.7 1.3 3 3 3s3-1.3 3-3V2"></path>
+                <path d="M6 2v20"></path>
+                <path d="M15 2v8h6"></path>
+                <path d="M21 2v20"></path>
+            </svg>
             <span>Restaurants</span>
-        </NavLink>
+        </a>
+        </div>
     </nav>
 </div>
+
+@code {
+    private bool IsRestaurantsActive
+    {
+        get
+        {
+            var path = Navigation.ToBaseRelativePath(Navigation.Uri);
+            return path.StartsWith("restaurant", StringComparison.OrdinalIgnoreCase);
+        }
+    }
+}
