@@ -1,6 +1,6 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var api = builder.AddProject<Projects.LunchNear_Api>("api")
+var api = builder.AddProject<Projects.LunchNear_API>("api")
     .WithExternalHttpEndpoints();
 
 // LunchNear.Web is Blazor WASM: code executing in the browser cannot resolve Aspire service
