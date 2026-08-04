@@ -1,12 +1,10 @@
-# LunchNear
+<p align="center">
+  <img height="500" src="https://github.com/user-attachments/assets/503680f5-065b-46c5-a4b8-2a6d8fed2286" alt="Lunch Deals" />
+  &nbsp;&nbsp;
+  <img height="500" src="https://github.com/user-attachments/assets/ee59b2d9-0657-4ac3-af41-be1aa7a58209" alt="LunchNear Landing" />
+</p>
 
-A student lunch finder for Gothenburg, Sweden. Browse real restaurants from OpenStreetMap, discover lunch deals, and curate student discounts through a built-in admin panel.
 
-Built with **Clean Architecture** in .NET 10: a Blazor WebAssembly PWA frontend talks to an ASP.NET Core Minimal API backed by SQLite and Entity Framework Core.
-
-<img width="1815" height="912" alt="Clean Architecture overview" src="https://github.com/user-attachments/assets/ef6bbe7a-0daf-418e-bc03-0fefe8e006e0" />
-
-## Features
 
 - **Restaurant discovery** — search, filter, and find nearby places using browser geolocation
 - **Real venue data** — restaurants seeded from OpenStreetMap (Overpass API) in central Gothenburg
